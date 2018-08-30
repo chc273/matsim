@@ -18,7 +18,6 @@ import os
 from pymatgen.io.lammps.data import LammpsData
 from pymatgen.core import Structure
 from monty.tempfile import ScratchDir
-import subprocess
 import shutil
 
 def read_forces(filename):
@@ -34,7 +33,7 @@ def run_file(file):
     """
     Assume lammps is already installed
     """
-    p = subprocess.check_output(['lmp_serial', '-in', file])
+    os.system('lmp_serial -in ' + file)
 
 def lammps_forces(structures, inputfile):
     forces = []

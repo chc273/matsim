@@ -2,6 +2,7 @@ from phonopy import Phonopy
 from pymatgen.symmetry.bandstructure import HighSymmKpath
 from pymatgen.io.phonopy import get_phonopy_structure, get_pmg_structure
 import matplotlib.pyplot as plt
+import logging
 
 __author__ = "Chi Chen"
 __date__ = "Aug 30, 2018"
@@ -22,8 +23,6 @@ class PhononFromModel(object):
         structure (pymatgen structure): a pristine pymatgen structure
         atom_disp (float): small displacements in Angstrom
 
-    Methods:
-        get_thermo_properties()
     """
 
     def __init__(self, model=None, structure=None, atom_disp=0.015, **kwargs):
@@ -57,6 +56,7 @@ class PhononFromModel(object):
         forces = self.model.calculate_forces(self.structure_list)
         self.phonon.set_forces(forces[1:])
         self.phonon.produce_force_constants()
+        logging.info("Force constant produced") 
 
     def get_thermo_properties(self, mesh=[8, 8, 8], t_step=10, t_max=3000, t_min=0):
         self.phonon.set_mesh(mesh=mesh)
@@ -66,7 +66,7 @@ class PhononFromModel(object):
         plt = self.phonon.plot_thermal_properties()
         return plt
 
-    def get_bs_plot(self, points_per_line=30, figsize=(6, 4), ylim=[-1, 5]):
+    def get_bs_plot(self, points_per_line=50, figsize=(6, 4), ylim=[-1, 5]):
         bands = []
         bands = append_bands(bands, self.qpoints, points_per_line)
         self.phonon.set_band_structure(bands)
@@ -139,7 +139,6 @@ if __name__ == "__main__":
     from pymatgen.io.lammps.data import LammpsData
     from pymatgen.core import Structure
     from monty.tempfile import ScratchDir
-    import subprocess
     import shutil
 
     def read_forces(filename):
@@ -150,8 +149,7 @@ if __name__ == "__main__":
         return data
 
     def run_file(file):
-        p = subprocess.check_output(['lmp_serial', '-in', file])
-
+        os.system('lmp_serial -in '+ file)
     def lammps_forces(structures, inputfile):
         forces = []
         with ScratchDir("."):
@@ -174,7 +172,8 @@ if __name__ == "__main__":
     s = Structure.from_file('./data/POSCAR')
     fm = ForceModel()
     model = PhononFromModel(model=fm, structure=s)
-    plt = model.get_bs_plot(points_per_line=10)
+    print('model initialized')
+    plt = model.get_bs_plot(points_per_line=50)
     plt.show()
 
 
