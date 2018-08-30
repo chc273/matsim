@@ -1,7 +1,10 @@
 ## Phonon calculations
 
 We can use this module to calculate the phonon of any structure given that we have a model that can predict the forces.
-This package is a part of my publication `"Chen, Chi, Zhi Deng, Richard Tran, Hanmei Tang, Iek-Heng Chu, and Shyue Ping Ong. "Accurate force field for molybdenum by machine learning large materials data." Physical Review Materials 1, no. 4 (2017): 043603."`
+This package is a part of my publication:
+
+`"Chen, Chi, Zhi Deng, Richard Tran, Hanmei Tang, Iek-Heng Chu, and Shyue Ping Ong. "Accurate force field for molybdenum by machine learning large materials data." Physical Review Materials 1, no. 4 (2017): 043603."`
+
 Please cite this work if you will use this package elsewhere.
 #### Usage
 
