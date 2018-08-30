@@ -73,4 +73,4 @@ plt = model.get_bs_plot(points_per_line=10)
 plt.show()
 ```
 
-![mo_dispersion]("./data/mo_phonon.png")
+![mo_dispersion](./data/mo_phonon.png)
