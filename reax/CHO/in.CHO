@@ -16,3 +16,6 @@ min_style cg
 fix 1 all box/relax iso 0.0 vmax 0.001
 fix             2 all qeq/reax 1 0.0 10.0 1e-6 param.qeq
 minimize 1e-4 1e-6 100 1000
+
+dump 1 all atom 1 final_structure.data 
+run 0
