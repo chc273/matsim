@@ -1,0 +1,18 @@
+# REAX potential for CHO system
+# .....
+
+units		real
+
+atom_style	charge
+read_data	data.CHO
+
+pair_style	reax/c lmp_control
+pair_coeff	* * ffield.reax.cho H C O
+
+neighbor	2 bin
+neigh_modify	every 10 delay 0 check no
+
+min_style cg
+fix 1 all box/relax iso 0.0 vmax 0.001
+fix             2 all qeq/reax 1 0.0 10.0 1e-6 param.qeq
+minimize 1e-4 1e-6 100 1000
