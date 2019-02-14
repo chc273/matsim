@@ -16,7 +16,7 @@ from pymatgen.io.lammps.data import LammpsData
 lmp = LammpsData.from_structure(structure)
 lmp.write_file('data.CHO')
 ```
-2. Run the program by `lmp_serial -in in.CHO`
+2. Run the program by `lmp_serial -in in.CHO`. The optimized structure will be `final_structure.data`.
 
 ### Final words
 This tutorial is based on the LAMMPS reax CHO example. Please cite the following paper if you will use it in paper. 
