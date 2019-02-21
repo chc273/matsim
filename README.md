@@ -5,4 +5,4 @@
 - phonon
     - phonon calculation and visualization tools given a model that can calculate forces for the structures.
 - Reax
-    - Reactive force field example or relaxing a molecule
+    - Reactive force field example of relaxing a molecule
